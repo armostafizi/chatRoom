@@ -20,9 +20,11 @@ class App extends Component {
 
     this.state = {
       hideCompleted: false,
+      value: '',
     };
     this.notify = this.notify.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleTextChange = this.handleTextChange.bind(this);
   }
 
   notify () {
@@ -51,9 +53,18 @@ class App extends Component {
     event.preventDefault();
 
     //find the text field via the React ref
-    const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
+    const text = this.state.value.trim();
+    let username = '';
 
-    Meteor.call('messages.insert', text)
+    if (inarray(Object.keys(this.props.currentUser.services), "facebook")) {
+      username = this.props.currentUser.services.facebook.name;
+    } else if (inarray(Object.keys(this.props.currentUser.services), "twitter")) {
+      username = this.props.currentUser.services.twitter.screenName;
+    } else if (inarray(Object.keys(this.props.currentUser.services), "google")) {
+      username = this.props.currentUser.services.google.name;
+    }
+
+    Meteor.call('messages.insert', text, username);
 
     // Tasks.insert({
     //   text,
@@ -63,7 +74,7 @@ class App extends Component {
     // });
 
     //Clear form
-    ReactDOM.findDOMNode(this.refs.textInput).value = '';
+    this.setState({value: ''});
   }
 
   toggleHideCompleted() {
@@ -74,20 +85,27 @@ class App extends Component {
 
   renderMessages() {
     let filteredMessages = this.props.messages;
-    if (this.state.hideCompleted) {
+    //if (this.state.hideCompleted) {
       //filteredMessages = filteredMessages.filter(task => !task.checked);
-    }
+    //}
+    //console.log(filteredMessages);
     return filteredMessages.map((message) => {
       const currentUserId = this.props.currentUser && this.props.currentUser._id;
-      const showPrivateButton = message.owner === currentUserId;
+      const showDeleteButton = message.owner === currentUserId;
 
       return (
         <Message
           key={message._id}
           message={message}
-          showPrivateButton={showPrivateButton}
+          showDeleteButton={showDeleteButton}
         />
       );
+    });
+  }
+
+  handleTextChange (e) {
+    this.setState({
+      value: e.target.value.substr(0,130)
     });
   }
 
@@ -109,8 +127,8 @@ class App extends Component {
       }
 
     }
-    console.log("here is the link!");
-    console.log(link);
+    //console.log("here is the link!");
+    //console.log(link);
 
     return (
       <div className="container">
@@ -125,16 +143,15 @@ class App extends Component {
             Notify
           </Button>
 
-          {this.props.currentUser ?
-            <img src={link} style={{width: '50px', height: '50px'}} />
-            : ''
-          }
           { this.props.currentUser ?
             <form className="new-task" onSubmit={this.handleSubmit} >
+            <img src={link} style={{width: '40px', height: '40px'}} />
               <input
                 type="text"
                 ref="textInput"
                 placeholder="Type to add new messages"
+                value={this.state.value}
+                onChange={this.handleTextChange}
               />
             </form> : ''
           }
@@ -159,6 +176,8 @@ App.PropTypes = {
 export default createContainer(() => {
   Meteor.subscribe('messages');
   Meteor.subscribe('userData');
+  //console.log(Meteor.user());
+  //console.log(Messages.find({}, { sort: { createdAt: -1 } }).fetch());
   return {
     messages: Messages.find({}, { sort: { createdAt: -1 } }).fetch(),
     //incompletedCounts: Messages.find({checked: { $ne: true} }).count(),

@@ -19,9 +19,13 @@ export default class Message extends Component {
 
     return (
       <li>
-      	<button className="delete" onClick={this.DeleteThisMessage}>
-      		&times;
-      	</button>
+				{this.props.showDeleteButton ?
+	      	<button className="delete" onClick={this.DeleteThisMessage}>
+	      		&times;
+	      	</button>
+					:
+					''
+				}
 
       	<span className="text">
           <strong>{this.props.message.username}</strong>: {this.props.message.text}
@@ -35,4 +39,5 @@ Message.propTypes = {
   // This component gets the task to display through a React prop.
   // We can use propTypes to indicate it is required
   message: PropTypes.object.isRequired,
+	showDeleteButton: PropTypes.bool.isRequired,
 };

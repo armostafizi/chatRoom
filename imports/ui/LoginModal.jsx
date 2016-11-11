@@ -56,7 +56,7 @@ export default class LoginModal extends Component {
             >
               Login
             </Button>
-            <Modal autoFocus="True" bsSize="sm" show={this.state.showModal} onHide={this.close}>
+            <Modal autoFocus={true} bsSize="sm" show={this.state.showModal} onHide={this.close}>
               <Modal.Body>
                 <div>
                   <AccountsUIWrapper />

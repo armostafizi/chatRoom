@@ -1,6 +1,11 @@
 import '../imports/api/messages.js';
 import '../imports/api/users.js';
+console.log('staring');
+import '../imports/startup/accounts-config.js';
+console.log('ending');
 import '../imports/startup/push-config-server.js';
+
+
 
 // // Generate user initials after Facebook login
 // Accounts.onCreateUser((options, user) => {
