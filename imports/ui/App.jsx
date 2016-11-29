@@ -30,7 +30,7 @@ class App extends Component {
   notify () {
     Push.debug = true;
     console.log('notifying starts');
-    let a = Push.send({
+    Push.send({
         from: 'push',
         title: 'Hello',
         text: 'world',
@@ -44,7 +44,7 @@ class App extends Component {
         // payload: user data
         // delayUntil: Date
     });
-    console.log(a);
+    //console.log(a);
     console.log('notifying ended');
 
   }
