@@ -4,22 +4,22 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
   <!-- Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap-theme.min.css">
+
+  <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyDsIPP3YwH7U0MbwNibsMi3jy0z547mEXY",
+      authDomain: "chatroom-462af.firebaseapp.com",
+      databaseURL: "https://chatroom-462af.firebaseio.com",
+      storageBucket: "chatroom-462af.appspot.com",
+      messagingSenderId: "612526468068"
+    };
+    firebase.initializeApp(config);
+  </script>
+  
 </head>
 
 <body>
   <div id="render-target"></div>
 </body>
-
-
-<script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyDsIPP3YwH7U0MbwNibsMi3jy0z547mEXY",
-    authDomain: "chatroom-462af.firebaseapp.com",
-    databaseURL: "https://chatroom-462af.firebaseio.com",
-    storageBucket: "chatroom-462af.appspot.com",
-    messagingSenderId: "612526468068"
-  };
-  firebase.initializeApp(config);
-</script>
