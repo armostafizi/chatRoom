@@ -1,4 +1,4 @@
-//import { Push } from 'meteor/raix:push';
+import Push from 'meteor/raix:push';
 
 Push.Configure({
   /*apn: {
