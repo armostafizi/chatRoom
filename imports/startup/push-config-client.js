@@ -1,5 +1,6 @@
 import { Push } from 'meteor/raix:push';
 
+console.log('client-conf-start');
 Push.Configure({
   android: {
     senderID: 612526468068,
@@ -18,3 +19,4 @@ Push.Configure({
     sound: true
   }*/
 });
+console.log('client-conf-end');

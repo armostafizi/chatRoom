@@ -1,5 +1,6 @@
 import { Push } from 'meteor/raix:push';
 
+console.log('server-conf-start');
 Push.Configure({
   /*apn: {
     certData: Assets.getText('apnDevCert.pem'),
@@ -29,3 +30,4 @@ Push.allow({
         return true; // Allow all users to send
     }
 });
+console.log('server-conf-end');
