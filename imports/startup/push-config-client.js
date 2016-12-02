@@ -1,10 +1,10 @@
 import { Push } from 'meteor/raix:push';
 
 console.log('client-conf-start');
+
 Push.Configure({
   android: {
     senderID: 612526468068,
-    // 612526468068
     alert: true,
     badge: true,
     sound: true,
@@ -13,10 +13,11 @@ Push.Configure({
     // icon: '',
     // iconColor: ''
   },
-  /*ios: {
+  ios: {
     alert: true,
     badge: true,
     sound: true
-  }*/
+  }
 });
+
 console.log('client-conf-end');
