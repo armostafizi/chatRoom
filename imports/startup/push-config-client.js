@@ -19,5 +19,5 @@ Push.Configure({
     sound: true
   }
 });
-
+Push.debug = true;
 console.log('client-conf-end');

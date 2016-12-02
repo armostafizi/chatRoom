@@ -1,7 +1,6 @@
 import { Push } from 'meteor/raix:push';
 
 console.log('server-conf-start');
-
 Push.Configure({
   apn: {
     //certData: Assets.getText('apnDevCert.pem'),
@@ -11,8 +10,8 @@ Push.Configure({
     //gateway: 'gateway.push.apple.com',
   },
   gcm: {
-    apiKey: 'AIzaSyDsIPP3YwH7U0MbwNibsMi3jy0z547mEXY',
-    //apiKey: 'AIzaSyCLbb8e2_SddP7FKEDyyQpxqXNdZEI5CzQ',
+    apiKey: 'AIzaSyCLbb8e2_SddP7FKEDyyQpxqXNdZEI5CzQ',
+    projectNumber: 612526468068
   }
   // production: true,
   // 'sound' true,
@@ -24,5 +23,5 @@ Push.Configure({
   // 'keepNotifications': false,
 //
 });
-
+Push.debug = true;
 console.log('server-conf-end');
